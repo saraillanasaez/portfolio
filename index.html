@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sara Illana Portfolio</title>
+<meta name="description" content="Portfolio of Sara Illana, industrial and digital product designer in Copenhagen.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sara Illana Portfolio">
+<meta property="og:description" content="Portfolio of Sara Illana, industrial and digital product designer in Copenhagen.">
+<meta property="og:image" content="https://saraillanasaez.github.io/portfolio/img/og.jpg">
+<meta property="og:url" content="https://saraillanasaez.github.io/portfolio/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Ctext x='32' y='43' font-family='Arial' font-weight='700' font-size='30' fill='white' text-anchor='middle'%3ESI%3C/text%3E%3C/svg%3E">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+<style>
+/* Layout: one long scroll. Dark hero → white work grid → white about → rounded dark footer card.
+   Project pages reuse the same nav + footer and stack flexible image/text blocks.
+   Strictly black & white by design (single theme on purpose). */
+:root{
+  --ink:#111111;        /* dark grey, replaces pure black */
+  --ink-2:#1d1d1d;      /* slightly lifted dark for hovers */
+  --paper:#ffffff;
+  --soft:#f3f3f3;       /* placeholder / pressed fills */
+  --line:#e4e4e4;
+  --muted:#6a6a6a;      /* secondary text on white (AA) */
+  --muted-dark:#a8a8a8; /* secondary text on dark (AA) */
+  --font:"Poppins", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --radius:16px;
+  --radius-lg:24px;
+  --nav-h:72px;
+  --gutter:clamp(16px, 4vw, 48px);
+  --maxw:1280px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 24px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.035em;line-height:1.05;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
+.on-dark :focus-visible{outline-color:var(--paper)}
+
+/* ---------- Button (from reference: white pill, ↗ becomes → on hover) ---------- */
+.btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--paper);color:var(--ink);border:0;border-radius:999px;padding:.55rem 1.15rem;font:500 .95rem/1.2 var(--font);cursor:pointer;text-decoration:none;white-space:nowrap;transition:background .2s,transform .15s}
+.btn svg{flex:none;transition:width .25s ease,opacity .2s ease,margin .25s ease}
+.btn .i-in{width:14px;height:14px}
+.btn .i-out{width:0;height:16px;opacity:0;margin-left:-.5rem}
+.btn:hover .i-in{width:0;opacity:0;margin-right:-.5rem}
+.btn:hover .i-out{width:16px;opacity:1;margin-left:0}
+.btn:active{background:#e9e9e9;transform:scale(.97)}
+.btn:focus-visible{outline:none;box-shadow:0 0 0 2px var(--ink),0 0 0 4px var(--paper)}
+.btn--dark{background:var(--ink);color:var(--paper)}
+.btn--dark:active{background:var(--ink-2)}
+.btn--dark:focus-visible{box-shadow:0 0 0 2px var(--paper),0 0 0 4px var(--ink)}
+
+/* ---------- Nav ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--ink);color:var(--paper)}
+.nav .wrap{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{font-weight:700;font-size:1.35rem;letter-spacing:-.03em;text-decoration:none}
+.nav-right{display:flex;align-items:center;gap:clamp(1.25rem,4vw,3.5rem)}
+.nav-links{display:flex;gap:clamp(1.25rem,4vw,3.25rem);list-style:none;margin:0;padding:0}
+.nav-links a{text-decoration:none;font-weight:500;font-size:.95rem;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav-links a:hover::after{transform:scaleX(1)}
+.burger{display:none;background:none;border:0;color:var(--paper);width:44px;height:44px;margin-right:-10px;cursor:pointer;align-items:center;justify-content:center}
+.burger span,.burger span::before,.burger span::after{display:block;width:22px;height:1.8px;background:currentColor;position:relative;transition:transform .25s,background .2s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0}
+.burger span::before{top:-7px}.burger span::after{top:7px}
+.burger[aria-expanded="true"] span{background:transparent}
+.burger[aria-expanded="true"] span::before{transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] span::after{transform:translateY(-7px) rotate(-45deg)}
+@media (max-width:760px){
+  .burger{display:inline-flex}
+  .nav-right{position:absolute;top:var(--nav-h);left:0;right:0;background:var(--ink);flex-direction:column;align-items:flex-start;gap:1.5rem;padding:1.25rem var(--gutter) 2rem;border-top:1px solid #2a2a2a}
+  .nav-right[data-open="false"]{display:none}
+  .nav-links{flex-direction:column;gap:1.1rem}
+  .nav-links a{font-size:1.5rem;font-weight:500;letter-spacing:-.02em}
+}
+
+/* ---------- Hero ---------- */
+.hero{background:var(--ink);color:var(--paper);min-height:calc(100svh - var(--nav-h));display:flex;flex-direction:column;justify-content:center;padding-block:clamp(3rem,8vh,6rem)}
+.hero h1{font-size:clamp(2.5rem,17vw,11rem);white-space:nowrap;line-height:.88;letter-spacing:-.055em;font-weight:600}
+/* name and intro read as title + subtitle: the box is as wide as the name, the intro fills ~95% of it */
+.hero-title{width:fit-content;max-width:100%;margin-inline:auto;text-align:center}
+.hero-intro{width:0;min-width:95%;margin:clamp(1.25rem,2.5vw,2rem) auto 0;font-size:clamp(.95rem,1.7vw,1.4rem);font-weight:300;line-height:1.5;color:#bdbdbd;text-wrap:pretty}
+.hero-foot{margin-top:clamp(3rem,10vh,7rem);display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:var(--muted-dark)}
+.scroll-cue{display:inline-flex;align-items:center;gap:.75rem;text-decoration:none}
+.scroll-cue i{display:block;width:1px;height:36px;background:#3a3a3a;position:relative;overflow:hidden}
+.scroll-cue i::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--paper);animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{to{top:100%}}
+
+/* ---------- Sections ---------- */
+.section{padding-block:clamp(5rem,11vw,9rem)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;margin-bottom:clamp(2rem,5vw,3.5rem);flex-wrap:wrap}
+.sec-head h2{font-size:clamp(2.4rem,6vw,4.75rem)}
+.sec-head .count{color:var(--muted);font-size:.95rem;font-variant-numeric:tabular-nums}
+.eyebrow{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* Work grid */
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(2.5rem,5vw,4.5rem) clamp(1.25rem,3vw,2.5rem)}
+@media (max-width:720px){.grid{grid-template-columns:1fr}}
+.card{text-decoration:none;display:flex;flex-direction:column;gap:1.1rem}
+.card .media{border-radius:var(--radius);overflow:hidden;background:var(--soft);aspect-ratio:4/3}
+.card .media img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .4s}
+.card:hover .media img{transform:scale(1.035)}
+.card-row{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.card h3{font-size:clamp(1.25rem,2vw,1.6rem);letter-spacing:-.025em}
+.card .meta{color:var(--muted);font-size:.95rem;margin-top:.25rem}
+.card .go{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:background .25s,color .25s,border-color .25s}
+.card:hover .go{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.card:focus-visible{outline-offset:8px;border-radius:var(--radius)}
+
+/* About */
+/* photo spans from the "About me" label to the last line of the bio; details sit below the text */
+.about{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);column-gap:clamp(2rem,6vw,6rem);align-items:start}
+.about .photo{grid-column:1;grid-row:1;align-self:stretch;border-radius:var(--radius);overflow:hidden;background:var(--soft);max-width:520px}
+.about-text{grid-column:2;grid-row:1}
+.about-facts{grid-column:2;grid-row:2}
+.about .photo{position:relative}
+.about .photo img{position:absolute;inset:0;aspect-ratio:auto!important}
+@media (max-width:820px){.about .photo img{position:static}}
+@media (max-width:820px){.about{grid-template-columns:1fr;row-gap:2rem}.about .photo,.about-text,.about-facts{grid-column:1;grid-row:auto}.about .photo{aspect-ratio:4/5;align-self:start}}
+.about .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.about h2{font-size:clamp(2rem,4.2vw,3.4rem);margin-block:1rem 1.5rem}
+.about .bio{display:grid;gap:1rem;font-size:1.05rem;color:#2c2c2c;text-align:justify;hyphens:auto}
+.facts{margin:2.25rem 0 0;padding-top:1.75rem;border-top:1px solid var(--line);display:grid;grid-template-columns:min-content max-content;justify-content:space-between;gap:1.25rem 1.5rem}
+.facts dt{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.nw{white-space:nowrap}
+/* when the text column is narrow, stack the details so "What I do" keeps its two lines */
+.about-facts{container-type:inline-size}
+.facts dd{margin:.2rem 0 0;font-weight:500;font-size:.94rem}
+/* two columns down to phone size; in tighter columns the text scales down so "What I do" keeps its two lines */
+@container (max-width:440px){.facts{grid-template-columns:1fr}}
+@container (min-width:441px){.facts dd.lines{white-space:nowrap}}
+@container (min-width:441px) and (max-width:720px){.facts dd{font-size:min(.94rem,(100cqi - 1.5rem) / 38)}}
+
+/* ---------- Footer card ---------- */
+.footer-outer{padding:0 clamp(12px,2vw,24px) clamp(12px,2vw,24px)}
+.footer{background:var(--ink);color:var(--paper);border-radius:var(--radius-lg);padding:clamp(4rem,10vw,7.5rem) var(--gutter) 2rem;text-align:center}
+.footer h2{font-size:clamp(2.6rem,8vw,6rem);letter-spacing:-.05em}
+.footer .btn{margin-top:1.75rem}
+.contact-row{margin-top:clamp(4rem,10vw,7rem);display:flex;justify-content:space-around;gap:1.25rem 2rem;flex-wrap:wrap}
+.contact-row a{text-decoration:none;font-weight:500;font-size:clamp(.95rem,1.4vw,1.1rem);overflow-wrap:anywhere;border-bottom:1px solid transparent;transition:border-color .2s}
+.contact-row a:hover{border-color:currentColor}
+.contact-item{display:flex;flex-direction:column;align-items:center;gap:.45rem;min-width:0}
+.contact-item span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-dark);font-weight:500}
+.footer-base{margin-top:clamp(3.5rem,8vw,5.5rem);display:flex;flex-direction:column;align-items:center;gap:.6rem;font-size:.82rem;color:var(--muted-dark)}
+.linkbtn{background:none;border:0;color:inherit;font:inherit;cursor:pointer;padding:.25rem .5rem}
+.linkbtn:hover{color:var(--paper)}
+@media (max-width:640px){.contact-row{flex-direction:column;align-items:center}}
+
+/* ---------- Project page ---------- */
+.p-head{padding-block:clamp(4rem,9vw,7rem) clamp(2rem,4vw,3rem)}
+.back{display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;color:var(--muted);font-size:.9rem;margin-bottom:2rem}
+.back:hover{color:var(--ink)}
+.p-title{text-align:center}
+.p-head h1{font-size:clamp(2.8rem,8vw,6.5rem);letter-spacing:-.05em}
+.p-desc{margin:1.25rem auto 0;font-size:clamp(1.05rem,1.6vw,1.25rem);max-width:none;color:#2c2c2c;line-height:1.5;text-wrap:balance}
+.p-meta{margin:clamp(2.5rem,5vw,3.5rem) 0 0;padding-top:1.5rem;border-top:1px solid var(--line);display:grid;grid-template-columns:auto auto minmax(0,max-content);justify-content:space-between;gap:1.5rem 3rem}
+/* first column starts at the left edge, last column ends at the right edge of the images */
+@media (max-width:640px){.p-meta{grid-template-columns:1fr 1fr;justify-content:stretch}.p-meta div:last-child{grid-column:1/-1}.p-meta .nw{white-space:normal}}
+.p-meta dt{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.p-meta dd{margin:.35rem 0 0;font-weight:500}
+.blocks{display:grid;gap:clamp(3rem,7vw,6.5rem);padding-bottom:clamp(4rem,9vw,7rem)}
+.fig{margin:0;display:grid;gap:.9rem}
+.fig img{width:100%;height:auto;border-radius:var(--radius);background:var(--soft);object-fit:cover}
+.fig img.plain{border-radius:0;background:none;object-fit:contain} /* drawings: no frame */
+.fig figcaption,.cap{font-size:.9rem;color:var(--muted);max-width:60ch}
+.b-text{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:1.25rem 2rem}
+@media (max-width:720px){.b-text{grid-template-columns:1fr}}
+.b-text h2{font-size:clamp(1.5rem,2.6vw,2.1rem);letter-spacing:-.03em;display:flex;gap:.75rem;align-items:baseline}
+.b-text h2 .num{font-size:.9rem;font-weight:500;color:var(--muted);letter-spacing:0;font-variant-numeric:tabular-nums}
+.b-text .body{display:grid;gap:1rem}
+.b-text p{font-size:1.1rem;color:#2c2c2c;text-align:justify;hyphens:auto}
+.b-text p.spec{text-align:left}
+.b-text ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.1rem 1.5rem}
+.b-text li{padding:.7rem 0;border-bottom:1px solid var(--line);font-weight:500;font-size:1rem}
+.b-text li small{display:block;font-weight:400;color:var(--muted);font-size:.85rem}
+@media (max-width:480px){.b-text ul{grid-template-columns:1fr}}
+.b-text .spec{font-size:.9rem;color:var(--muted);font-variant-numeric:tabular-nums}
+/* a pair marked tight sits right under the previous image, with the same gap as between the two pair images */
+.blocks > .tight{margin-top:calc(clamp(.75rem,2vw,1.5rem) - clamp(3rem,7vw,6.5rem))}
+.b-pair,.b-grid{display:grid;gap:clamp(.75rem,2vw,1.5rem)}
+.b-pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+.b-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.b-grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:720px){.b-grid,.b-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.b-pair{grid-template-columns:1fr}}
+.b-ti{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(1.5rem,5vw,5rem);align-items:center}
+.b-ti.reverse .fig{order:2}
+.b-ti h3{font-size:clamp(1.35rem,2.3vw,1.9rem);margin-bottom:.9rem;letter-spacing:-.03em}
+.b-ti p{font-size:1.05rem;color:#2c2c2c;text-align:justify;hyphens:auto}
+/* justified text leaves big gaps on narrow screens, so phones get left-aligned text */
+@media (max-width:600px){.b-text p,.b-ti p,.about .bio{text-align:left;hyphens:manual}}
+@media (max-width:760px){.b-ti{grid-template-columns:1fr}.b-ti.reverse .fig{order:0}}
+.next{border-top:1px solid var(--line);padding-block:clamp(3.5rem,8vw,6rem)}
+.next h2.more-title{font-size:clamp(2rem,4.5vw,3.25rem);margin-bottom:clamp(1.5rem,3vw,2.25rem)}
+.more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(.75rem,2vw,1.25rem)}
+@media (max-width:640px){.more{grid-template-columns:1fr}}
+.tile{position:relative;display:block;border-radius:var(--radius);overflow:hidden;aspect-ratio:7/5;background:var(--ink);text-decoration:none;isolation:isolate}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.tile::after{content:"";position:absolute;inset:0;background:rgba(17,17,17,.42);transition:background .3s;z-index:1}
+.tile span{position:absolute;inset:0;z-index:2;display:grid;place-items:center;padding:1.5rem;text-align:center;color:var(--paper);font-weight:600;font-size:clamp(1.4rem,2.8vw,2.1rem);line-height:1.15;letter-spacing:-.035em;text-wrap:balance}
+.tile:hover img{transform:scale(1.04)}
+.tile:hover::after{background:rgba(17,17,17,.55)}
+.tile:focus-visible{outline-offset:4px}
+.all-work{display:inline-block;margin-top:2rem;color:var(--muted);font-size:.95rem}
+.all-work:hover{color:var(--ink)}
+
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,12px);background:var(--paper);color:var(--ink);font-size:.9rem;font-weight:500;padding:.65rem 1.1rem;border-radius:999px;box-shadow:0 6px 24px rgba(0,0,0,.18);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:200;max-width:calc(100vw - 32px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+/* ---------- Fade-in on scroll (only for items below the fold) ---------- */
+.pre{opacity:0;transform:translateY(18px)}
+.reveal{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+@media (prefers-reduced-motion:reduce){.pre{opacity:1;transform:none}.scroll-cue i::after{animation:none}}
+</style>
+
+<a class="sr-only" href="#main">Skip to content</a>
+
+<header class="nav on-dark">
+  <div class="wrap">
+    <a class="logo" href="#top">Sara Illana</a>
+    <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="navmenu"><span></span></button>
+    <div class="nav-right" id="navmenu" data-open="false">
+      <ul class="nav-links">
+        <li><a href="#top">Home</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About me</a></li>
+      </ul>
+      <button class="btn" data-to-footer>
+        <svg class="i-in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        Contact me
+        <svg class="i-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main"></main>
+
+<div class="footer-outer" id="footer">
+  <footer class="footer on-dark">
+    <h2>Let's work together!</h2>
+    <a class="btn" id="connect" href="#" target="_blank" rel="noopener">
+      <svg class="i-in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      Connect
+      <svg class="i-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <div class="contact-row" id="contact-row"></div>
+    <div class="footer-base">
+      <button class="linkbtn" id="to-top">Back to top</button>
+      <span id="copyright"></span>
+    </div>
+  </footer>
+</div>
+
+
+
+<script>
+/* =====================================================================
+   EDIT YOUR CONTENT HERE
+   - Images: put a URL or file path in `src`. Leave it empty ("") to show a grey placeholder.
+   - `ratio` sets the image shape ("16/9", "4/3", "1/1", "4/5"...).
+   - Project blocks can be duplicated, deleted or reordered freely. Types:
+       { type:"text",  title, text }
+       { type:"full",  image, caption }
+       { type:"pair",  images:[a,b], caption, tight:true }   // tight: sits close under the image above
+       { type:"textImage", image, title, text, reverse:true/false }
+       { type:"grid",  images:[a,b,c] or [a,b,c,d], caption }
+   - Add a project by copying one object in PROJECTS. The slug becomes its URL (#slug).
+   ===================================================================== */
+
+const SITE = {
+  name: "Sara Illana",
+  intro: "Industrial and digital product designer in Copenhagen, combining creativity and engineering to translate user needs into intuitive, well\u2011crafted products.",
+  email: "sara.illana.saez@gmail.com",
+  phone: "+45 72 62 77 36",
+  linkedin: "https://www.linkedin.com/in/sara-illana-saez",
+  photo: { src: "img/about/sara.webp", alt: "Black and white portrait of Sara Illana smiling, outdoors among trees", ratio: "1095/1437" },
+  aboutTitle: "I care about creating things that people genuinely enjoy using.",
+  bio: [
+    "I'm an industrial and digital product designer, passionate about using design and innovation to enhance everyday experiences.",
+    "What drew me to design is the way it brings creativity and engineering together. I love creating solutions that balance aesthetics and functionality: products that look great, but also feel intuitive and meaningful to use. Whether physical or digital, my goal is always human-centred design that improves how people live, interact and connect with the things around them.",
+    "My background across very different industries has taught me to look at problems from many angles. I'm comfortable in every phase of the design process, from early sketches to technical development, and adapt to being more creative or more technical as each project needs."
+  ],
+  facts: [
+    ["Background", "Industrial Design Engineering · MSc Design & Innovation"],
+    ["What I do", "Industrial Design · UX/UI Design · Concept\nDevelopment · Design Research · Prototyping"],
+    ["Based in", "Copenhagen"],
+    ["Languages", "Spanish · English · Danish · French"]
+  ]
+};
+
+const img = (label, ratio = "16/9", alt = "") => ({ src: "", alt: alt || label, ratio, label });
+
+const PROJECTS = [
+  {
+    slug: "reset",
+    title: "Reset",
+    category: "Product Design",
+    year: "",
+    description: "A set of three modular sofas designed to create a calm atmosphere and a sense of well-being.",
+    meta: [["Type of project", "Conceptual Project"], ["Category", "Furniture"], ["Skills", "Sketching · Concept Development · 3D Modelling · Rendering"]],
+    cover: { src: "img/reset/living-room.webp", alt: "Three Reset sofa modules around a round coffee table in a sunlit living room", ratio: "1448/1086" },
+    hero:  { src: "img/reset/living-room.webp", alt: "Three Reset sofa modules around a round coffee table in a sunlit living room", ratio: "1448/1086" },
+    brief: null,
+    blocks: [
+      { type: "text", num: "01", title: "The challenge",
+        text: [
+          "Everyday life is busy and stressful, and our homes rarely help us switch off. At the same time, a lot of furniture is made to be replaced rather than kept.",
+          "The challenge was to design a sofa that creates a calm place to rest, builds a lasting connection with the people who use it and stays relevant over time. The project draws on the (Dis)connection space trend and on Naoto Fukasawa's simple, subtle approach to everyday objects."
+        ] },
+      { type: "full", image: { src: "img/reset/sketches.webp", alt: "Sketch sheet exploring tables, chairs, organic forms and modular sofa configurations", ratio: "1448/1086" } },
+      { type: "text", num: "02", title: "My approach",
+        text: [
+          "I started by sketching different furniture types and organic forms, keeping in mind Fukasawa's idea of designing around how people actually use everyday objects.",
+          "This led to the concept: a sofa split into three modules of different shapes and sizes, which can be used on their own or combined depending on the occasion. Each module has a flexible backrest that can be placed anywhere, so users decide where and how to sit.",
+          "I then developed the design in 3D, refining the organic shapes and proportions so the set feels soft and inviting, and rendered it in different settings."
+        ] },
+      { type: "full", image: { src: "img/reset/render-top-crop.webp", alt: "Render of the three Reset modules joined into one sofa", ratio: "1492/622" } },
+      { type: "pair", images: [
+          { src: "img/reset/render-side-crop.webp", alt: "Side view render of a single Reset module with its backrest", ratio: "1161/1000" },
+          { src: "img/reset/dimensions-white.webp", alt: "Technical drawing of the full set: 400 cm wide, 200 cm deep, 40 cm seat height, 30 cm backrest", ratio: "1196/1030", plain: true }
+        ] },
+      { type: "text", num: "03", title: "The result",
+        text: ["A modular sofa system with organic shapes and a soft velvet finish that invites users to lie down and relax, built from durable materials so it stays in use for years."],
+        list: [
+          ["Birch wood", "Used for the structure."],
+          ["Polyurethane foam", "Used for the padding."],
+          ["Velvet", "Used for the upholstery."],
+          ["Steel", "Used for the base."]
+        ],
+        spec: "Full set 400 × 200 cm · Seat height 40 cm · Backrest 30 cm" }
+    ],
+    finalHero: { src: "img/reset/lobby.webp", alt: "Reset modules arranged around a coffee table in a hotel lobby", ratio: "1536/1024" }
+  },
+  {
+    slug: "platoscience",
+    title: "PlatoScience Clinical Platform",
+    category: "UX/UI Design",
+    year: "",
+    description: "Redesign of PlatoScience's clinical dashboard, helping clinicians monitor and manage remote neurostimulation treatments with clearer patient data and less cognitive load.",
+    meta: [["Type of project", "Industry Collaboration · PlatoScience"], ["Category", "Healthcare Dashboard"], ["Skills", "User Research · Interaction Design · Prototyping · Usability Testing"]],
+    cover: { src: "img/platoscience/laptop-hero.webp", alt: "Laptop on a blue cushion showing the PlatoScience patient profile with progress, adherence and a treatment calendar", ratio: "4512/3138" },
+    hero: { src: "img/platoscience/laptop-hero.webp", alt: "Laptop on a blue cushion showing the PlatoScience patient profile with progress, adherence and a treatment calendar", ratio: "4512/3138" },
+    brief: null,
+    blocks: [
+      { type: "text", num: "01", title: "The challenge",
+        text: [
+          "PlatoScience develops devices for at-home tDCS treatment, supported by a clinician-facing platform for remote monitoring and management.",
+          "In the existing dashboard, patient data was difficult to access and interpret, making it harder to quickly assess patient status, track treatment progress, and identify adherence issues."
+        ] },
+      { type: "full", image: { src: "img/platoscience/screens.webp", alt: "Patient Overview list and a patient profile showing PHQ-9 questionnaire results over time", ratio: "1630/965" } },
+      { type: "text", num: "02", title: "My approach",
+        text: [
+          "I started by analysing the existing dashboard and interviewing stakeholders to find pain points and needs.",
+          "Those insights shaped the requirements and user flows, which took the design from sketches and wireframes to a high-fidelity interactive prototype.",
+          "Two rounds of usability testing guided the iterations and confirmed the improvements."
+        ] },
+      { type: "full", image: { src: "img/platoscience/wireflow-patients.webp", alt: "Wireflow of the Patients section: Patients Overview, Add Patient, and the patient profile tabs Overview, Protocol, Sessions and Questionnaires", ratio: "8000/2717" } },
+      { type: "full", image: { src: "img/platoscience/wireflow-protocols.webp", alt: "Wireflow of the Protocols section: Protocols Library and the two-step Create Protocol flow, with Assign, Edit and Copy to Edit actions", ratio: "8000/2217" } },
+      { type: "text", num: "03", title: "The result",
+        text: ["A tested prototype where clinicians see all their patients, manage them and monitor their treatments, built around how they actually check on patients."],
+        list: [
+          ["Home and patients", "Visual overview flagging who needs attention, with each patient's status, protocol, progress and adherence visible immediately."],
+          ["Patient profile", "Four-tab structure: an overview tab showing essential data first, followed by three detailed tabs for deeper exploration."],
+          ["Libraries", "Separate stimulation, protocol and questionnaire libraries for browsing, searching, managing and creating custom entries."],
+          ["Create protocol", "Workflow designed around how clinicians actually think about protocols, making the complex process of creating a treatment fast and intuitive."]
+        ] }
+    ],
+    finalHero: { src: "img/platoscience/homepage-laptop.webp", alt: "Clinician using the PlatoScience homepage on a laptop, with recent sessions, patients needing attention and recent activity", ratio: "1672/941" }
+  },
+  {
+    slug: "modular-housing",
+    title: "Modular Housing",
+    category: "Spatial Design",
+    year: "",
+    description: "A modular housing concept that adapts to different environments and changing needs for space, combining modular construction, flexible layouts and sustainable design.",
+    meta: [["Type of project", "Conceptual Project"], ["Category", "Housing"], ["Skills", "Sketching · Concept Development · CAD Modelling · 3D Visualisation"]],
+    cover: { src: "img/housing/lake-cover.webp", alt: "Hexagonal timber and glass housing unit with a roof terrace on a grassy lakeshore", ratio: "1100/825" },
+    hero:  { src: "img/housing/lake.webp", alt: "Hexagonal timber and glass housing unit with a roof terrace on a grassy lakeshore", ratio: "1630/965" },
+    brief: null,
+    blocks: [
+      { type: "text", num: "01", title: "The challenge",
+        text: [
+          "Cities are growing fast and housing is short, while conventional construction has a high environmental cost.",
+          "This project explores how a modular, adaptable housing system can meet that demand with less impact."
+        ] },
+      { type: "full", image: { src: "img/housing/sketches-moodboard.webp", alt: "Form exploration sketches of hexagonal units next to a mood board of timber cabins and a wood-tone palette", ratio: "1920/1080" } },
+      { type: "text", num: "02", title: "My approach",
+        text: [
+          "I started with visual research and a mood board, then sketched different geometric forms to see how they organise space and connect.",
+          "Hexagons worked best. They fit together without wasted space and create varied layouts that still look consistent, alone or in clusters.",
+          "I developed the concept in Fusion 360, refining proportions and testing how the modules connect."
+        ] },
+      { type: "full", image: { src: "img/housing/beach.webp", alt: "Three housing units clustered in a row on a beach", ratio: "1469/590" } },
+      { type: "pair", images: [
+          { src: "img/housing/side.webp", alt: "Side view of a unit in a field, with the external stair to the roof terrace", ratio: "1320/990" },
+          { src: "img/housing/front.webp", alt: "Front view of a single unit in a field, showing the glazed living space", ratio: "1320/990" }
+        ] },
+      { type: "text", num: "03", title: "The result",
+        text: ["A housing system built on one hexagonal unit. It is modular, adaptable and made to last, and feels spacious despite its compact size."],
+        list: [
+          ["Modular frame", "Use one unit alone or combine several in a cluster."],
+          ["Raised base and roof terrace", "More living space on the same footprint."],
+          ["Timber and glass", "A warm, open interior full of daylight."],
+          ["Wood and steel", "One consistent look in any setting."]
+        ] }
+    ],
+    finalHero: { src: "img/housing/forest.webp", alt: "Housing unit with a roof terrace in a meadow in front of a forested hill", ratio: "1630/965" }
+  },
+  {
+    slug: "gothentic",
+    title: "Go'Thentic",
+    category: "UX/UI Design",
+    year: "",
+    description: "Travel planning app that simplifies how people discover inspiration, organise trips and manage their budget, bringing the entire planning process into one place.",
+    meta: [["Type of project", "Conceptual Project"], ["Category", "Mobile App"], ["Skills", "User Flows · Wireframing · UI Design · Prototyping"]],
+    cover: { src: "img/gothentic/mockup.webp", alt: "Two phones showing Go'Thentic: the Explore screen and a London itinerary with budget tracking", ratio: "1672/940" },
+    hero: { src: "img/gothentic/mockup.webp", alt: "Two phones showing Go'Thentic: the Explore screen and a London itinerary with budget tracking", ratio: "1672/940" },
+    brief: null,
+    blocks: [
+      { type: "text", num: "01", title: "The challenge",
+        text: [
+          "Most people find travel ideas on social media, but turning them into a real plan means switching between booking sites, maps and notes. In a survey of 21 people aged 19–34, the same three problems came up: planning takes too long, there's too much information to filter, and it's hard to fit a trip to a budget.",
+          "The goal was to bring inspiration, planning and costs into one app, without making planning feel like more work."
+        ] },
+      { type: "full", image: { src: "img/gothentic/story-map.webp", alt: "User story map: a traveller whose goal is easily planning a trip within a budget, with actions Create profile, Explore, Plan a new trip, Plan trip from suggested itinerary, Keep track of the budget and Share your past itineraries, each with its tasks", ratio: "1774/887" } },
+      { type: "text", num: "02", title: "My approach",
+        text: [
+          "I started by defining the target users and value proposition, then created a user story map of everything users need to do in the app.",
+          "From there, I turned the story map into wireframes and linked every screen into one flow, with notes on what happens at each step. This helped the team decide how the app should behave and made gaps in the flow easy to spot.",
+          "Finally, I built a clickable Figma prototype, which was then tested in short interviews with users."
+        ] },
+      { type: "full", image: { src: "img/gothentic/screens-final.webp", alt: "Go'Thentic app screens in a grid: itinerary with budget, Your Trips, Explore, Your cities, trip map and Budget", ratio: "1935/1089" } },
+      { type: "pair", tight: true, images: [{ src: "img/gothentic/screens-trips.webp", alt: "Three phones: trip setup with a world map, Your Trips list, and the Budget screen", ratio: "1482/1061" }, { src: "img/gothentic/screens-onboarding.webp", alt: "Two onboarding screens: budget preference sliders and Choose your Interests", ratio: "1482/1061" }] },
+      { type: "text", num: "03", title: "The result",
+        text: ["An app prototype where users save what inspires them and turn it into a trip they can edit, follow and share."],
+        list: [
+          ["Personal onboarding", "Users pick their interests and set their activity level, budget and footprint to get personalised suggestions from the start."],
+          ["Explore and save", "Ready-made itineraries, restaurants, places and local tips. Anything users like is saved for later planning."],
+          ["Trip builder", "An AI-generated itinerary based on saved places, including flights, stays, food and activities, each with an estimated cost."],
+          ["Community", "Users rate places after visiting them and can share finished trips with others."]
+        ] }
+    ],
+    finalHero: { src: "img/gothentic/phone-plane.webp", alt: "Traveller on a plane holding a phone with a Go'Thentic Thailand itinerary and budget", ratio: "1706/922" }
+  }
+];
+
+/* =====================================================================
+   RENDERING (no need to edit below)
+   ===================================================================== */
+document.documentElement.lang = "en"; // lets justified text hyphenate cleanly
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+// keep each " · " attached to the word before it, so a line never starts with a dot
+const dots = v => {
+  const t = String(v ?? "");
+  // a "\n" in the text sets the line break by hand (used for "What I do")
+  if (t.includes("\n")) return t.split("\n").map(l => esc(l).replace(/ · /g, "\u00a0· ")).join("<br>");
+  return t.split(" · ").map(x => `<span class="nw">${esc(x)}</span>`).join("\u00a0· ");
+};
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const TONES = ["#ececec", "#e2e2e2", "#d8d8d8", "#e6e6e6"];
+let toneI = 0;
+
+function placeholder(label, ratio) {
+  const [rw, rh] = ratio.split("/").map(Number);
+  const w = 1600, h = Math.round(1600 * rh / rw);
+  const bg = TONES[toneI++ % TONES.length];
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${w} ${h}'><rect width='100%' height='100%' fill='${bg}'/><text x='50%' y='50%' font-family='Poppins,Arial,sans-serif' font-size='${Math.round(w/40)}' fill='#8a8a8a' text-anchor='middle' dominant-baseline='middle'>${esc(label)}</text></svg>`;
+  return { src: "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg), w, h };
+}
+function imgTag(o, eager = false) {
+  const ratio = o.ratio || "16/9";
+  const p = o.src ? null : placeholder(o.label || "Image", ratio);
+  const [rw, rh] = ratio.split("/").map(Number);
+  return `<img${o.plain ? ' class="plain"' : ""} src="${esc(o.src || p.src)}" alt="${esc(o.alt || o.label || "")}" width="${rw}" height="${rh}" style="aspect-ratio:${ratio}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
+}
+const fig = (o, cap, eager) => `<figure class="fig">${imgTag(o, eager)}${cap ? `<figcaption>${esc(cap)}</figcaption>` : ""}</figure>`;
+const arrowRight = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`;
+const arrowUp = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>`;
+
+function renderHome() {
+  toneI = 0;
+  $("#main").innerHTML = `
+  <section class="hero on-dark" id="top">
+    <div class="wrap">
+      <div class="hero-title">
+        <h1>${esc(SITE.name)}</h1>
+        <p class="hero-intro">${esc(SITE.intro)}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="sec-head" data-reveal><h2 id="work-title">Selected work</h2><span class="count">${String(PROJECTS.length).padStart(2,"0")} projects</span></div>
+      <div class="grid">
+        ${PROJECTS.map(p => `
+          <a class="card" href="#${p.slug}" data-reveal>
+            <div class="media">${imgTag({ ...p.cover, ratio: "4/3" })}</div>
+            <div class="card-row">
+              <div><h3>${esc(p.title)}</h3><p class="meta">${esc(cardMeta(p))}</p></div>
+              <span class="go" aria-hidden="true">${arrowUp}</span>
+            </div>
+          </a>`).join("")}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-title" style="padding-top:0">
+    <div class="wrap about">
+      <div class="photo" data-reveal>${imgTag(SITE.photo)}</div>
+      <div class="about-text" data-reveal>
+        <span class="eyebrow">About me</span>
+        <h2 id="about-title">${esc(SITE.aboutTitle)}</h2>
+        <div class="bio">${SITE.bio.map(t => `<p>${esc(t)}</p>`).join("")}</div>
+      </div>
+      <div class="about-facts" data-reveal>
+        <dl class="facts">${SITE.facts.map(([k,v,w]) => `<div${w ? ' class="wide"' : ""}><dt>${esc(k)}</dt><dd${String(v).includes("\n") ? ' class="lines"' : ""}>${dots(v)}</dd></div>`).join("")}</dl>
+      </div>
+    </div>
+  </section>`;
+}
+
+function renderBlock(b) {
+  switch (b.type) {
+    case "text": {
+      const paras = [].concat(b.text || []).map(t => `<p>${esc(t)}</p>`).join("");
+      const list = b.list ? `<ul>${b.list.map(([a, c]) => `<li>${esc(a)}${c ? `<small>${esc(c)}</small>` : ""}</li>`).join("")}</ul>` : "";
+      const spec = b.spec ? `<p class="spec">${esc(b.spec)}</p>` : "";
+      return `<div class="b-text" data-reveal><h2>${b.num ? `<span class="num">${esc(b.num)}</span>` : ""}${esc(b.title)}</h2><div class="body">${paras}${list}${spec}</div></div>`;
+    }
+    case "full": return `<div data-reveal>${fig(b.image, b.caption)}</div>`;
+    case "pair": return `<div${b.tight ? ' class="tight"' : ""} data-reveal><div class="b-pair">${b.images.map(i => fig(i)).join("")}</div>${b.caption ? `<p class="cap" style="margin-top:.9rem">${esc(b.caption)}</p>` : ""}</div>`;
+    case "grid": return `<div data-reveal><div class="b-grid ${b.images.length === 4 ? "four" : ""}">${b.images.map(i => fig(i)).join("")}</div>${b.caption ? `<p class="cap" style="margin-top:.9rem">${esc(b.caption)}</p>` : ""}</div>`;
+    case "textImage": return `<div class="b-ti ${b.reverse ? "reverse" : ""}" data-reveal>${fig(b.image, b.caption)}<div><h3>${esc(b.title)}</h3><p>${esc(b.text)}</p></div></div>`;
+    default: return "";
+  }
+}
+
+// Metadata row: use `meta` if set, otherwise Type / Skills / Year
+const metaOf = p => p.meta || [["Type of project", p.type], ["Skills", p.skills], ["Year", p.year]].filter(([, v]) => v);
+const cardMeta = p => [p.category, p.year].filter(Boolean).join(" · ");
+
+function renderProject(p) {
+  toneI = 0;
+  const i = PROJECTS.indexOf(p);
+  // The two projects after this one, looping back to the start
+  const more = [1, 2].map(n => PROJECTS[(i + n) % PROJECTS.length]).filter(m => m !== p);
+  $("#main").innerHTML = `
+  <article>
+    <header class="wrap p-head" id="top">
+      <a class="back" href="#work"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>All work</a>
+      <div class="p-title"><h1>${esc(p.title)}</h1>
+      <p class="p-desc">${esc(p.description)}</p></div>
+      <dl class="p-meta">${metaOf(p).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd${String(v).includes("\n") ? ' class="lines"' : ""}>${dots(v)}</dd></div>`).join("")}</dl>
+    </header>
+    <div class="wrap blocks">
+      ${fig(p.hero, "", true)}
+      ${p.brief ? renderBlock({ type: "text", title: "Background", text: p.brief }) : ""}
+      ${p.blocks.map(renderBlock).join("")}
+      <div data-reveal>${fig(p.finalHero)}</div>
+    </div>
+    <section class="next" aria-labelledby="more-title">
+      <div class="wrap">
+        <h2 class="more-title" id="more-title">More projects</h2>
+        <div class="more">
+          ${more.map(m => `<a class="tile" href="#${m.slug}">${imgTag({ ...m.cover, ratio: "7/5" })}<span>${esc(m.title)}</span></a>`).join("")}
+        </div>
+        <a class="all-work" href="#work">Back to all work</a>
+      </div>
+    </section>
+  </article>`;
+}
+
+/* Fade-in: only items that start below the fold get hidden, so the first view is always complete */
+let io;
+function setupReveal() {
+  if (reduce || !("IntersectionObserver" in window)) return;
+  io?.disconnect();
+  io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll("[data-reveal]").forEach(el => {
+    if (el.getBoundingClientRect().top > innerHeight) {
+      el.classList.add("pre");
+      requestAnimationFrame(() => el.classList.add("reveal"));
+      io.observe(el);
+    }
+  });
+}
+
+/* Routing: #slug = project page; #work / #about / #top = home sections */
+let view = null;
+function route() {
+  const h = location.hash.slice(1);
+  const p = PROJECTS.find(x => x.slug === h);
+  if (p) {
+    renderProject(p); view = "p:" + h;
+    document.title = `${p.title} · ${SITE.name}`;
+    window.scrollTo({ top: 0, behavior: "instant" });
+    setupReveal();
+    return;
+  }
+  document.title = "Sara Illana Portfolio";
+  const changed = view !== "home";
+  if (changed) { renderHome(); view = "home"; }
+  const target = h && h !== "top" ? document.getElementById(h) : null;
+  if (target) {
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: changed || reduce ? "instant" : "smooth" });
+      setupReveal();
+    });
+  } else {
+    if (h === "top" || changed) window.scrollTo({ top: 0, behavior: changed || reduce ? "instant" : "smooth" });
+    setupReveal();
+  }
+}
+addEventListener("hashchange", route);
+
+/* Mobile menu */
+const burger = $(".burger"), menu = $("#navmenu");
+function setMenu(open) { burger.setAttribute("aria-expanded", open); menu.dataset.open = open; }
+burger.addEventListener("click", () => setMenu(burger.getAttribute("aria-expanded") !== "true"));
+menu.addEventListener("click", e => { if (e.target.closest("a, button")) setMenu(false); });
+addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+
+/* Footer */
+const mail = `mailto:${SITE.email}`;
+$("#contact-row").innerHTML = `
+  <div class="contact-item"><span>Phone</span><a href="tel:${SITE.phone.replace(/\s/g, "")}">${esc(SITE.phone)}</a></div>
+  <div class="contact-item"><span>Email</span><a href="${mail}" data-mail>${esc(SITE.email)}</a></div>
+  <div class="contact-item"><span>LinkedIn</span><a href="${SITE.linkedin}" target="_blank" rel="noopener">${esc(SITE.linkedin.replace("https://www.", "").replace("https://", ""))}</a></div>`;
+$("#connect").href = SITE.linkedin;
+$("#copyright").textContent = `© ${new Date().getFullYear()} ${SITE.name}. All rights reserved.`;
+$("#to-top").addEventListener("click", () => window.scrollTo({ top: 0, behavior: reduce ? "instant" : "smooth" }));
+
+/* Email links open the visitor's mail app. As a backup (some browsers or previews block mail links),
+   clicking also copies the address and shows a short "Email copied" note. */
+const toast = document.createElement("div"); toast.className = "toast"; toast.setAttribute("role", "status"); document.body.append(toast);
+document.addEventListener("click", e => {
+  if (!e.target.closest("[data-mail]")) return;
+  navigator.clipboard?.writeText(SITE.email).then(() => {
+    toast.textContent = "Email copied: " + SITE.email; toast.classList.add("show");
+    clearTimeout(toast._t); toast._t = setTimeout(() => toast.classList.remove("show"), 2600);
+  }).catch(() => {});
+});
+
+// Nav "Contact me" scrolls down to the footer with the contact details
+document.addEventListener("click", e => {
+  if (!e.target.closest("[data-to-footer]")) return;
+  $("#footer").scrollIntoView({ behavior: reduce ? "instant" : "smooth", block: "end" });
+});
+
+route();
+</script>
+
+</body>
+</html>
